@@ -10,6 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import main.SkaterGame;
+import main.scene.sprites.AnimatedSprite;
 import main.scene.sprites.MainCharacter;
 
 public class GameScene extends GeneralScene{
@@ -57,9 +58,9 @@ public class GameScene extends GeneralScene{
 					this.stop();
 					SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
 				}else if (activeKeys.contains(KeyCode.LEFT)) {
-					bear.move(MainCharacter.LEFT);
+					bear.move(AnimatedSprite.LEFT);
 				}else if (activeKeys.contains(KeyCode.RIGHT)) {
-					bear.move(MainCharacter.RIGHT);
+					bear.move(AnimatedSprite.RIGHT);
 				}
 				
 			}

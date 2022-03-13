@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 
 import javafx.scene.image.Image;
 import javafx.scene.shape.Path;
+import main.scene.GeneralScene;
 
 public class MainCharacter extends AnimatedSprite{
 
@@ -37,9 +38,11 @@ public class MainCharacter extends AnimatedSprite{
 		int newX = x;
 		
 		if(movement == LEFT) {
-			newX -= STEP;
+			//se la mia x è già a zero non può andare a sinistra
+			newX -= Math.min(STEP, x);
 		}else if(movement == RIGHT) {
-			newX += STEP;
+			//guardo se arrivo al bordo a destra
+			newX += Math.min(STEP, GeneralScene.GAME_WIDTH - MAIN_CHARACTER_WIDTH - x);
 		}
 		moveTo(newX, y);
 		animate(movement);

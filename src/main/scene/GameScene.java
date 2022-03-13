@@ -12,6 +12,7 @@ import javafx.scene.text.FontWeight;
 import main.SkaterGame;
 import main.scene.sprites.AnimatedSprite;
 import main.scene.sprites.MainCharacter;
+import main.scene.sprites.Obstacle;
 
 public class GameScene extends GeneralScene{
 	
@@ -20,6 +21,8 @@ public class GameScene extends GeneralScene{
 	
 	private Image background;
 	private MainCharacter bear;
+	//forse meglio usare un Optional
+	private Obstacle obstacle = null;
 	
 	public GameScene() {
 		super();
@@ -50,6 +53,11 @@ public class GameScene extends GeneralScene{
 				gc.drawImage(background, 0, 0); //qui uso tutto il png e lo voglio a grandezza schermo
 				bear.draw(gc); //disegno l'orso col metodo dentro MainCharacter
 				
+				//se c'è un ostacolo lo disegno
+				if(obstacle != null) {
+					obstacle.draw(gc);
+				}
+				
 				//guardo se preme esc o invio
 				if (activeKeys.contains(KeyCode.ESCAPE)) {
 					this.stop();
@@ -58,9 +66,26 @@ public class GameScene extends GeneralScene{
 					this.stop();
 					SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
 				}else if (activeKeys.contains(KeyCode.LEFT)) {
-					bear.move(AnimatedSprite.LEFT);
+					bear.move(MainCharacter.LEFT);
 				}else if (activeKeys.contains(KeyCode.RIGHT)) {
-					bear.move(AnimatedSprite.RIGHT);
+					bear.move(MainCharacter.RIGHT);
+				}
+				
+				//per ora tengo nelllo schermo un ostacolo alla volta, altezza terra
+				if(obstacle  == null) {
+					obstacle = new Obstacle();
+					//il 2* è perchè se no è troppo in basso
+					obstacle.moveTo((int)(Math.random() * (GeneralScene.GAME_WIDTH - Obstacle.OBSTACLE_WIDTH)), 0);
+				} else {
+					obstacle.move();
+					//controllo le collisioni, se lo tocco esco
+					if (obstacle.collidesWith(bear)) {
+						SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
+					}
+					//se esce dallo schermo lo tolgo
+					else if (obstacle.getY() > GeneralScene.GAME_HEIGHT) {
+						obstacle = null;
+					}
 				}
 				
 			}

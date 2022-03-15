@@ -24,6 +24,7 @@ public class WelcomeScene extends GeneralScene{
 		gc.setFont(myFont);
 		gc.setFill(Color.WHITE);
 		gc.fillText("Press SpaceBar to play", 325, 275);
+		gc.fillText("Press S to go to the shop", 325, 305);
 	}
 	
 	@Override
@@ -46,6 +47,9 @@ public class WelcomeScene extends GeneralScene{
 				} else if (activeKeys.contains(KeyCode.ESCAPE)) {
 					this.stop();
 					SkaterGame.exit();
+				} else if(activeKeys.contains(KeyCode.S)) {
+					this.stop();
+					SkaterGame.setScene(SkaterGame.SHOP_SCENE);
 				}
 				
 			}

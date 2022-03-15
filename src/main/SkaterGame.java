@@ -7,15 +7,17 @@ import javafx.stage.Stage;
 import main.scene.CreditsScene;
 import main.scene.GameScene;
 import main.scene.GeneralScene;
+import main.scene.ShopScene;
 import main.scene.WelcomeScene;
 
 public class SkaterGame extends Application {
 	
 	//creo delle constanti per le mie schermate di gioco
-	public static final int MAX_SCENES = 3;
+	public static final int MAX_SCENES = 4;
 	public static final int WELCOME_SCENE = 0;
 	public static final int GAME_SCENE = 1;
 	public static final int CREDITS_SCENE = 2;
+	public static final int SHOP_SCENE = 3; 
 	
 	public static final GeneralScene[] scenes = new GeneralScene[MAX_SCENES];
 	
@@ -29,6 +31,7 @@ public class SkaterGame extends Application {
 		scenes[0] = new WelcomeScene();
 		scenes[1] = new GameScene();
 		scenes[2] = new CreditsScene();
+		scenes[3] = new ShopScene(); 
 		
 		stage.setTitle("Skater Game");
 		setScene(WELCOME_SCENE);

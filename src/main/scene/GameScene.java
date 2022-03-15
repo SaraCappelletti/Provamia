@@ -24,6 +24,9 @@ public class GameScene extends GeneralScene{
 	//forse meglio usare un Optional
 	private Obstacle obstacle = null;
 	
+	public int initialX = 380;
+	public int initialY = 375;
+	
 	public GameScene() {
 		super();
 		//carico la foto nel campo background e bear
@@ -40,7 +43,7 @@ public class GameScene extends GeneralScene{
 		//se c'era qualche bottono nella lista la pulisco perchè sono all'inizio
 		activeKeys.clear();
 		//scelgo la posizione iniziale dell'orso
-		bear.moveTo(380, 375);
+		bear.moveTo(initialX, initialY);
 		//uso un timer di java fx che ripete il mio codice ogni tot nano secondi automaticamente
 		new AnimationTimer() {
 
@@ -65,10 +68,21 @@ public class GameScene extends GeneralScene{
 				} else if (activeKeys.contains(KeyCode.ENTER)) {
 					this.stop();
 					SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
-				}else if (activeKeys.contains(KeyCode.LEFT)) {
+				/*}else if (activeKeys.contains(KeyCode.LEFT)) {
 					bear.move(MainCharacter.LEFT);
 				}else if (activeKeys.contains(KeyCode.RIGHT)) {
 					bear.move(MainCharacter.RIGHT);
+				}*/
+				}else if (activeKeys.contains(KeyCode.SPACE)) {
+					if (bear.y == initialY) {
+						bear.move(MainCharacter.UP);
+					}
+					
+				} else {
+					if (bear.y != initialY) {
+						bear.y = initialY;
+						bear.precMove = MainCharacter.DOWN;
+					}
 				}
 				
 				//per ora tengo nelllo schermo un ostacolo alla volta, altezza terra

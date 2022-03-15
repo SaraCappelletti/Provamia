@@ -9,8 +9,8 @@ public class Sprite {
 	protected int width;
 	protected int height;
 	//coordinate nello schermo
-	protected int x;
-	protected int y;
+	public int x;
+	public int y;
 	//coordinate dello sprite nel png per scegliere l'orso che mi serve
 	protected int spriteX;
 	protected int spriteY;

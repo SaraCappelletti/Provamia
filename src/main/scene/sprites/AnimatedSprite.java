@@ -4,8 +4,10 @@ public class AnimatedSprite extends Sprite{
 
 	//decido che movimenti può fare
 	private static final int TOTAL_MOVEMENTS = 2;
-	public static final int RIGHT = 0;
-	public static final int LEFT = 1;
+	//public static final int RIGHT = 0;
+	//public static final int LEFT = 1;
+	public static final int UP = 0;
+	public static final int DOWN = 0;
 	//quando veloce deve cambiare immagine 
 	public static final byte SPRITE_CHANGE = 5;
 	
@@ -20,7 +22,8 @@ public class AnimatedSprite extends Sprite{
 	public AnimatedSprite(int width, int height) {
 		super(width, height);
 		//parto a destra, con lo sprite frontale e 0 nel counter movimento
-		currentDirection = RIGHT;
+		//currentDirection = RIGHT;
+		currentDirection = DOWN;
 		currentSprite = 0;
 		currentSpriteChange = 0;
 	}

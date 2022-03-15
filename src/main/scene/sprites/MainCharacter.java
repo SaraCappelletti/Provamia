@@ -17,6 +17,8 @@ public class MainCharacter extends AnimatedSprite{
 	//decido quanto è lungo un passo
 	public static final int STEP = 4;
 	
+	public int precMove = DOWN;
+	
 	public MainCharacter() {
 		super(MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
 		try {
@@ -26,25 +28,32 @@ public class MainCharacter extends AnimatedSprite{
 		}
 		
 		//scelgo le animazioni per andare a destra e a sinistra
-		spriteXCoordinates[RIGHT] = new int[] {480, 576, 672, 576};
-		spriteYCoordinates[RIGHT] = new int[] {0, 0, 0, 0};
-		spriteXCoordinates[LEFT] = new int[] {1248, 1344, 1440, 1344}; 
-		spriteYCoordinates[LEFT] = new int[] {0, 0, 0, 0};
+		//spriteXCoordinates[RIGHT] = new int[] {480, 576, 672, 576};
+		//spriteYCoordinates[RIGHT] = new int[] {0, 0, 0, 0};
+		//spriteXCoordinates[LEFT] = new int[] {1248, 1344, 1440, 1344}; 
+		//spriteYCoordinates[LEFT] = new int[] {0, 0, 0, 0};
+		spriteXCoordinates[UP] = new int[] {480, 576, 672, 576};
+		spriteYCoordinates[UP] = new int[] {0, 0, 0, 0};
 		
 		updateSpriteCoordinates();
 	}
 	
+	@SuppressWarnings("unused")
 	public void move(int movement) {
-		int newX = x;
+		int newY = y;
 		
-		if(movement == LEFT) {
+		/*if(movement == LEFT) {
 			//se la mia x è già a zero non può andare a sinistra
 			newX -= Math.min(STEP, x);
 		}else if(movement == RIGHT) {
 			//guardo se arrivo al bordo a destra
 			newX += Math.min(STEP, GeneralScene.GAME_WIDTH - MAIN_CHARACTER_WIDTH - x);
+		}*/
+		if(movement == UP ) {
+			newY -= STEP*15;
+			precMove = UP;
 		}
-		moveTo(newX, y);
+		moveTo(x, newY);
 		animate(movement);
 	}
 }

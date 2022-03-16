@@ -41,7 +41,7 @@ public class Obstacle extends Sprite {
 	}
 	
 	public void move() {
-		this.y++;
+		this.x-=5;
 	}
 
 }

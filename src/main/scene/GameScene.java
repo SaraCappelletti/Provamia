@@ -89,7 +89,8 @@ public class GameScene extends GeneralScene{
 				if(obstacle  == null) {
 					obstacle = new Obstacle();
 					//il 2* è perchè se no è troppo in basso
-					obstacle.moveTo((int)(Math.random() * (GeneralScene.GAME_WIDTH - Obstacle.OBSTACLE_WIDTH)), 0);
+					obstacle.moveTo(GeneralScene.GAME_WIDTH - Obstacle.OBSTACLE_WIDTH, GeneralScene.GAME_HEIGHT - Obstacle.OBSTACLE_HEIGHT*2);
+					//obstacle.moveTo((int)(Math.random() * (GeneralScene.GAME_WIDTH - Obstacle.OBSTACLE_WIDTH)), 0);
 				} else {
 					obstacle.move();
 					//controllo le collisioni, se lo tocco esco
@@ -97,7 +98,7 @@ public class GameScene extends GeneralScene{
 						SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
 					}
 					//se esce dallo schermo lo tolgo
-					else if (obstacle.getY() > GeneralScene.GAME_HEIGHT) {
+					else if (obstacle.getX() < 0) {
 						obstacle = null;
 					}
 				}

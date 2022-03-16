@@ -68,20 +68,19 @@ public class GameScene extends GeneralScene{
 				} else if (activeKeys.contains(KeyCode.ENTER)) {
 					this.stop();
 					SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
-				/*}else if (activeKeys.contains(KeyCode.LEFT)) {
-					bear.move(MainCharacter.LEFT);
-				}else if (activeKeys.contains(KeyCode.RIGHT)) {
-					bear.move(MainCharacter.RIGHT);
-				}*/
-				}else if (activeKeys.contains(KeyCode.SPACE)) {
+				}else if (activeKeys.contains(KeyCode.SPACE) && !bear.isJumping) {
 					if (bear.y == initialY) {
+						bear.isJumping = true;
+						bear.jumpTime ++;
 						bear.move(MainCharacter.UP);
 					}
 					
-				} else {
-					if (bear.y != initialY) {
+				} else if (bear.isJumping){
+					bear.jumpTime ++;
+					if (bear.y != initialY && bear.jumpTime >= bear.JUMP_TIME) {
 						bear.y = initialY;
-						bear.precMove = MainCharacter.DOWN;
+						bear.isJumping = false;
+						bear.jumpTime = 0;
 					}
 				}
 				

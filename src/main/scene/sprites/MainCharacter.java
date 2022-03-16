@@ -16,8 +16,10 @@ public class MainCharacter extends AnimatedSprite{
 	public static final String IMAGE_PATH = "assets/bear.png";
 	//decido quanto è lungo un passo
 	public static final int STEP = 4;
-	
-	public int precMove = DOWN;
+	//decido quanto è lungo un salto, se sta saltando, e da quanto
+	public static final int JUMP_TIME = 30;
+	public boolean isJumping = false;
+	public int jumpTime = 0;
 	
 	public MainCharacter() {
 		super(MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);
@@ -49,9 +51,8 @@ public class MainCharacter extends AnimatedSprite{
 			//guardo se arrivo al bordo a destra
 			newX += Math.min(STEP, GeneralScene.GAME_WIDTH - MAIN_CHARACTER_WIDTH - x);
 		}*/
-		if(movement == UP ) {
+		if(movement == UP) {
 			newY -= STEP*15;
-			precMove = UP;
 		}
 		moveTo(x, newY);
 		animate(movement);

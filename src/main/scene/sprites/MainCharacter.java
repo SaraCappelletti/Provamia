@@ -16,10 +16,13 @@ public class MainCharacter extends AnimatedSprite{
 	public static final String IMAGE_PATH = "assets/bear.png";
 	//decido quanto è lungo un passo
 	public static final int STEP = 4;
-	//decido quanto è lungo un salto, se sta saltando, e da quanto
+	//decido quanto è lungo un salto, quanto deve passare tra un salto e l'altro
 	public static final int JUMP_TIME = 30;
+	public static final int WAIT_JUMP_TIME = 10;
+	//se sta saltando, da quanto e se deve aspettare
 	public boolean isJumping = false;
 	public int jumpTime = 0;
+	public int waitTime = WAIT_JUMP_TIME;
 	
 	public MainCharacter() {
 		super(MAIN_CHARACTER_WIDTH, MAIN_CHARACTER_HEIGHT);

@@ -69,7 +69,9 @@ public class GameScene extends GeneralScene{
 					this.stop();
 					SkaterGame.setScene(SkaterGame.CREDITS_SCENE);
 				}else if (activeKeys.contains(KeyCode.SPACE) && !bear.isJumping) {
-					if (bear.y == initialY) {
+					if(bear.waitTime < bear.WAIT_JUMP_TIME) {
+						bear.waitTime ++;
+					}else if (bear.y == initialY) {
 						bear.isJumping = true;
 						bear.jumpTime ++;
 						bear.move(MainCharacter.UP);
@@ -81,6 +83,7 @@ public class GameScene extends GeneralScene{
 						bear.y = initialY;
 						bear.isJumping = false;
 						bear.jumpTime = 0;
+						bear.waitTime = 0;
 					}
 				}
 				
